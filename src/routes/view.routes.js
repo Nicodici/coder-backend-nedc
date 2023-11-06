@@ -10,13 +10,13 @@ router.get("/", ViewsController.renderHome);
 
 router.get("/realTime", ViewsController.renderRealTimeProducts);
 
-router.get("/login", showLoginView , ViewsController.renderLogin);
+router.get("/login", showLoginView, ViewsController.renderLogin);
 
 router.get("/register", showLoginView, ViewsController.renderRegister);
 
 router.get("/cart", ViewsController.renderCart);
 
-router.get("/chat",ViewsController.renderChat);
+router.get("/chat", ViewsController.renderChat);
 
 router.get("/perfil", checkUserAuth, ViewsController.renderProfile);
 

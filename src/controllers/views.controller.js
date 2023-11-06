@@ -1,6 +1,4 @@
-import { ProductsMongo } from "../dao/managers/mongo/productsMongo.js";
-
-const productManager = new ProductsMongo();
+import { ProductService } from "../services/products.services.js";
 
 export class ViewsController {
     static renderHome = async (req, res) => {
@@ -15,7 +13,7 @@ export class ViewsController {
             if(stockValue){
                 query = {stock: {$gte:stockValue}};
             }
-            const result = await productManager.getProductsByPage(query, {page, limit, sort:{price:sortValue}, lean:true });
+            const result = await ProductService.getProductsByPage(query, {page, limit, sort:{price:sortValue}, lean:true });
             //console.log(result);
     
             const baseUrl = `${req.protocol}://${req.get("host")}${req.originalUrl}`
@@ -35,7 +33,7 @@ export class ViewsController {
     
             res.render("home", {...resultProductsView, user: req.session.userInfo});
         } catch (error) {
-            const products = await productManager.getProducts();
+            const products = await ProductService.getProducts();
             res.render("home", { products } , {user: req.session.userInfo});
         }
     };

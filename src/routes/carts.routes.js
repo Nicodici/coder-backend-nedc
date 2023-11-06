@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { CartsControllers } from '../controllers/carts.controller.js';
+import { Router } from "express";
+import { CartsControllers } from "../controllers/carts.controller.js";
 
 const router = Router();
 
@@ -18,5 +18,3 @@ router.delete("/:cid/product/:pid", CartsControllers.deleteProductFromCart);
 router.delete("/:cid", CartsControllers.deleteCart);
 
 export { router as cartsRouter };
-
-

@@ -15,6 +15,7 @@ import { viewRouter } from "./routes/view.routes.js";
 import { sessionRouter } from "./routes/sessions.routes.js";
 import { ProductsMongo } from "./dao/managers/mongo/productsMongo.js";
 import dotenv from "dotenv";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
 dotenv.config();
 
@@ -106,3 +107,4 @@ app.use("/api/productos", productsRouter);
 app.use("/api/carritos", cartsRouter);
 app.use("/api/sessions", sessionRouter);
 app.use(viewRouter);
+app.use(errorHandler);
