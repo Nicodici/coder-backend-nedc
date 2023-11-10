@@ -60,4 +60,7 @@ export class ViewsController {
     static renderProfile = async (req, res) => {
         res.render("profile", { user: req.session.userInfo });
     };
+    static renderforgot = async (req,res) => {
+        res.render("recupassword");
+    }
 };

@@ -1,15 +1,16 @@
 import { usersDao } from "../dao/managers/index.js";
-import passport from "passport";
+import { generateEmailToken } from "../helpers/gmail.js";
+import { recoveryEmail } from "../helpers/gmail.js";
 
 export class SessionsController {
   static renderRegister = async (req, res) => {
     try {
       const registerForm = req.body;
-      console.log(registerForm);
+      console.log("datos del usuario en el formulario:",registerForm)
       // verificar si el usuario ya esta registrado
       const user = await usersDao.getUserByEmail(registerForm.email);
-      //console.log(user);
-      if (user) {
+      console.log("busca si existe el usuario en la BD", user);
+      if (user == null) {
         return res.render("register", {
           error: "El usuario ya esta registrado",
         });
@@ -23,7 +24,7 @@ export class SessionsController {
 
   static renderRegisterFail = (req, res) => {
     res.send(
-      '<p>No se pudo loguear al usuario, <a href="/login">Regresar</a></p>'
+      '<p>Usuario o contraseña inválidos <a href="/login">Regresar</a></p>'
     );
   };
 
@@ -67,5 +68,29 @@ export class SessionsController {
         return res.render("profile", { user: req.session.user, error });
       res.redirect("/");
     });
+  };
+
+  static forgotPassword = async (req, res) => {
+    try {
+      const { email } = req.body;
+      const user = await usersDao.getUserByEmail(email);
+      if (!user) {
+        res.json({
+          status: "error",
+          message: "No es posible reestablecer la contraseña",
+        });
+      } else {
+        //generamos el token con el link para el usuario
+        const token = generateEmailToken(email, 5 * 60);
+        //enviar el mensaje al usuario con el enlace
+        await recoveryEmail(email, token);
+        res.send("correo enviado,");
+      }
+    } catch (error) {
+      res.json({
+        status: "error",
+        message: "No es posible reestablecer la contraseña",
+      });
+    }
   };
 }

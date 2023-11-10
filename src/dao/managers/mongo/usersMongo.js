@@ -30,9 +30,9 @@ export class UsersMongo {
   // Metodo para obtener usuario por email
   async getUserByEmail(email) {
     try {
-      //console.log(email);
-      const user = await this.model.findOne({ email: email });
-      //console.log(user);
+      console.log("email ingresado", email)
+      const user = await this.model.findOne({email: email });
+      console.log("usuario con email buscado", useremail)
       if (!user) {
         return null;
       }

@@ -8,7 +8,7 @@ const router = Router();
 router.post(
   "/register",
   passport.authenticate("signupStrategy", {
-    failureRedirect: "api/sessions/fail-Register",
+    failureRedirect: "fail-Register",
   }),
   SessionsController.renderRegister
 );
@@ -28,5 +28,7 @@ router.get("/fail-Login", SessionsController.renderLoginFail);
 
 // Cerrar sesion
 router.get("/logout", SessionsController.renderLogout);
+
+router.post("/recupassword",SessionsController.forgotPassword)
 
 export { router as sessionRouter };
