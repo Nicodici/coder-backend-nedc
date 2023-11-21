@@ -16,12 +16,14 @@ import { sessionRouter } from "./routes/sessions.routes.js";
 import { ProductsMongo } from "./dao/managers/mongo/productsMongo.js";
 import dotenv from "dotenv";
 import { errorHandler } from "./middlewares/errorHandler.js";
+import { addLogger } from "./helpers/logger.js";
 
 dotenv.config();
 
-const puerto = config.server.port;
+const port = config.server.port;
 // Crea una aplicación Express
 const app = express();
+const logger = addLogger();
 
 // Middleware
 app.use(express.json());
@@ -52,8 +54,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Inicia el servidor HTTP
-const servidorHttp = app.listen(puerto, () => {
-  console.log(`Servidor corriendo en el puerto ${puerto}`);
+const servidorHttp = app.listen(port, () => {
+  logger?.http(`Servidor corriendo en el puerto ${port}`);
 });
 
 // Crea un servidor Socket.IO
@@ -103,7 +105,7 @@ servidorSocket.on("connection", async (socket) => {
 });
 
 // Rutas
-app.use("/api/productos", productsRouter);
+app.use("/api/products", productsRouter);
 app.use("/api/carritos", cartsRouter);
 app.use("/api/sessions", sessionRouter);
 app.use(viewRouter);

@@ -7,7 +7,6 @@ export class SessionsController {
     try {
       const registerForm = req.body;
       console.log("datos del usuario en el formulario:",registerForm)
-      // verificar si el usuario ya esta registrado
       const user = await usersDao.getUserByEmail(registerForm.email);
       console.log("busca si existe el usuario en la BD", user);
       if (user == null) {
@@ -32,21 +31,16 @@ export class SessionsController {
     try {
       const loginForm = req.body;
       console.log(loginForm);
-      // verificar si el usuario ya esta registrado
       const user = await usersDao.getUserByEmail(loginForm.email);
-      //console.log(user);
       if (!user) {
         return res.render("login", { error: "El usuario no esta registrado" });
       }
-      // si el usuario existe, validar contraseña
       if (user.password === loginForm.password) {
-        //si la contraseña es correcta, creamos la ssesion
         req.session.userInfo = {
           first_name: user.first_name,
           last_name: user.last_name,
           email: user.email,
         };
-        //console.log(req.session.user);
         res.redirect("/");
       } else {
         return res.render("login", { error: "Credenciales Invalidas" });
@@ -80,9 +74,7 @@ export class SessionsController {
           message: "No es posible reestablecer la contraseña",
         });
       } else {
-        //generamos el token con el link para el usuario
         const token = generateEmailToken(email, 5 * 60);
-        //enviar el mensaje al usuario con el enlace
         await recoveryEmail(email, token);
         res.send("correo enviado,");
       }

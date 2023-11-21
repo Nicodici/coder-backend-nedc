@@ -4,10 +4,10 @@ import { CartService } from "../services/carts.services.js";
 export class CartsControllers {
   static getCarts = async (req, res) => {
     try {
-      const carrito = await CartService.getCarts();
-      res.json({ carrito });
+      const carts = await CartService.getCarts();
+      res.send({ status: "Success", data: carts });
     } catch (error) {
-      res.status(500).send({ status: "error", message: error.message });
+      res.status(400).json({ status: "error", message: error.message });
     }
   };
 
@@ -15,20 +15,22 @@ export class CartsControllers {
     try {
       const { cid } = req.params;
       const cart = await CartService.getCartById(cid);
-      res.json({ status: "success", cart });
+      res.send({ status: "success", data: cart });
     } catch (error) {
-      res.status(500).send({ status: "error", message: error.message });
+      res.status(400).json({ status: "error", message: error.message });
     }
   };
 
   static addCart = async (req, res) => {
     try {
       const { products } = req.body;
-      //console.log(products);
       if (!Array.isArray(products)) {
         return res
           .status(400)
-          .send({ error: "El campo products debe ser un array" });
+          .json({
+            status: "error",
+            message: "El campo products debe ser un array",
+          });
       }
       const validProducts = [];
 
@@ -38,15 +40,18 @@ export class CartsControllers {
         if (!checkId) {
           return res
             .status(404)
-            .send({ error: `El producto ${product._id} no existe` });
+            .json({
+              status: "error",
+              message: `El producto ${product._id} no existe`,
+            });
         }
         validProducts.push(checkId);
       }
 
       const newCart = await CartService.addCart(validProducts);
-      res.status(201).send(newCart);
+      res.status(201).send({ status: "Succes", data: newCart });
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500).send({ status: "error", message: error.message });
     }
   };
 
@@ -56,19 +61,21 @@ export class CartsControllers {
 
     try {
       const validProduct = await productsDao.getProductById(pid);
-
       if (!validProduct) {
-        return res.status(404).send({ error: `El producto ${pid} no existe` });
+        return res
+          .status(404)
+          .send({ status: "error", message: error.message });
       }
-
       const cart = await cartDao.addProductToCart(cid, { _id: pid, quantity });
-      console.log(cart);
       return res
         .status(201)
-        .send({ message: "Producto agregado al carrito", cart });
+        .send({
+          status: "Success",
+          message: "Producto agregado al carrito",
+          data: cart,
+        });
     } catch (error) {
-      console.log(error);
-      return res.status(500).send({ message: error.message });
+      return res.status(500).send({ status: "error", message: error.message });
     }
   };
 
@@ -82,7 +89,7 @@ export class CartsControllers {
         if (!checkId) {
           return res
             .status(404)
-            .send({ error: `El producto ${product.id} no existe` });
+            .send({ status: "error", message: error.message });
         }
       }
 
@@ -136,13 +143,18 @@ export class CartsControllers {
       const cart = await CartService.getCartById(cid);
 
       if (!cart) {
-        return res.status(404).send({ error: `El carrito ${cid} no existe` });
+        return res
+          .status(404)
+          .send({ status: "error", error: `El carrito ${cid} no existe` });
       }
 
       if (cart.products.length === 0) {
         return res
           .status(404)
-          .send({ error: `El carrito ${cid} no tiene productos` });
+          .send({
+            status: "error",
+            error: `El carrito ${cid} no tiene productos`,
+          });
       }
 
       cart.products = [];
