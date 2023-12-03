@@ -48,6 +48,14 @@ export const profileUploader = multer({
   fileFilter: multerProfileFilter,
 });
 
+export const verifyAdmin = ((req, res, next) => {
+  console.log(req);
+  if (req === "admin") {
+   return true;
+  }
+  return false;
+
+});
 
 //configuracion para guardar la imagen de los products
 const productsStorage = multer.diskStorage({
