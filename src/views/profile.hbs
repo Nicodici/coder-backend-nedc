@@ -1,23 +1,31 @@
-<h2 class="text-center  p-5 bg-dark text-white rounded shadow">PERFIL DE USUARIO</h2>
-
+<h2 class="text-center p-5 bg-dark text-white rounded shadow">PERFIL DE USUARIO</h2>
 
 <div class="card border-primary mx-auto mb-3 mt-5" style="max-width: 540px;">
-    <div class="row g-0 p-4">
-        <div class="col-md-4 my-auto ">
-            <img src="https://robohash.org/88b60b04361356a25110e8e118adeacb?set=set4&bgset=&size=400x400" class="img-thumbnail mx-auto" alt="Avatar">
-        </div>
-        <div class="col-md-8 p-4">
-            <div class="card-body">
-                <div class="card-header">Tu Perfil</div>
-                <br>
-                <p class="card-text"><strong>Nombre:</strong> {{user.first_name}}</p>
-                
-                <p class="card-text"><strong>Apellido:</strong> {{user.last_name}}</p>
-                
-                <p class="card-text"><strong>Email:</strong> {{user.email}}</p>
-            </div>
-            <button type="button" class="btn btn-outline-warning mx-3">Editar</button>
-            <a role="button" href="api/sessions/logout"  class="btn btn-outline-danger">Logout</a>
-        </div>
+  <div class="row g-0 p-4">
+    <div class="col-md-4 my-auto">
     </div>
+    <div class="col-md-8 p-4">
+      <div class="card-body">
+        <div class="card-header">Tu Perfil</div>
+        <br />
+        <p class="card-text"><strong>Nombre:</strong> {{user.first_name}}</p>
+        <p class="card-text"><strong>Apellido:</strong> {{user.last_name}}</p>
+        <p class="card-text"><strong>Email:</strong> {{user.email}}</p>
+        <p class="card-text"><strong>Rol:</strong> {{user.role}}</p>
+      </div>
+      <a role="button" href="/" class="btn btn-outline-danger">Logout</a>
+    </div>
+  </div>
+  <div class="row g-0 p-4">
+    <div class=" my-auto">
+      <h2>Carga de documentos</h2>
+      <p>Foto de perfil:</p>
+      <input type="file" name="avatar" />
+      <p>Documento - frente:</p>
+      <input type="file" name="dnifrente" />
+      <p>Documento - dorso:</p>
+      <input type="file" name="dnidorso" />
+
+    </div>
+  </div>
 </div>

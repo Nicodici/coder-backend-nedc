@@ -1,0 +1,121 @@
+paths:
+  /api/products:
+    get:
+      summary: Endpoint para obtener todos los productos
+      tags:
+        - Productos
+      responses:
+        "200":
+          description: Se obtuvieron correctamente todos los productos
+        "401":
+          description: No tienes permisos para esta ruta
+        "500":
+          description: Se produjo un error interno en el servidor
+
+components:
+  schemas:
+    Producto:
+      type: object
+      properties: 
+        _id:
+          type: ObjectId
+          description: id del usuario generado por MongoDB
+        title:
+          type: String
+          description: Titulo del producto
+        description:
+          type: String
+          description: Descripcion del producto
+        price:
+          type: Number
+          description: Precio del producto
+        thumbnail:
+          type: String
+          description: Url de la imagen
+        code:
+          type: String
+          description: Codigo del producto
+        stock:
+          type: Number
+          description: Stock disponible del producto
+        category:
+          type: String
+          description: Categoria del producto a
+      example:
+        _id: 123456789
+        title: pantalon
+        description: Pantalon de jean negro
+        price: 24000
+        thumbnail: www.asdasd.com
+        code: nkdha30
+        stock: 50
+        category: Zapatilla
+
+/api/products/{uid}:
+    get:
+      summary: Endpoint para obtener usuarios por id
+      tags:
+       - Productos
+      parameters:
+        -name: uid
+        -in: path
+        -description: Id del usuario
+        -required: true
+        -type: string
+        -example: 123456789
+      responses:
+        "200":
+          description: Se obtuvo correctamente el producto
+        "401":
+          description: No tienes permisos para esta ruta
+        "500":
+          description: Se produjo un error en el servidor
+        "404":
+          description: El producto no existe
+
+
+  # getById:
+  #   summary: Endpoint para obtener un producto por su id
+  #   tags:
+  #     - Productos
+  #   parameters:
+  #     - name: id
+  #   responses:
+  #     "200":
+  #       description: Se obtuvieron correctamente el producto
+  #     "401":
+  #       description: No tienes permisos para esta ruta
+  #     "500":
+  #       description: Se produjo un error en el servidor
+  #     "404":
+  #       description: El producto no existe
+  # updateById:
+  #   summary: Endpoint para actualizar un producto por su id
+  #   tags:
+  #     - Productos
+  #   parameters:
+  #     -name: id
+  #   responses:
+  #   "200":
+  #     description: Se actualizó correctamente el producto
+  #   "401":
+  #     description: No tienes permisos para esta ruta
+  #   "500":
+  #     description: Se produjo un error en el servidor
+  #   "404":
+  #     description: El producto no existe
+  # deleteById:
+  #   summary: Endpoint para eliminar un producto por su id
+  #   tags:
+  #   - Productos
+  #   parameters:
+  #   - name: id
+  #   responses:
+  #   "200":
+  #     description: Producto eliminado correctamente
+  #   "401":
+  #     description: No tienes los permisos necesarios para eliminar un producto
+  #   "500":
+  #     description: Se produjo un error en el servidor
+  #   "404":
+  #     description: El producto no existe

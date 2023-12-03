@@ -1,34 +1,19 @@
 import { Router } from "express";
 import passport from "passport";
 import { SessionsController } from "../controllers/sessions.controller.js";
+import { profileUploader } from "../utils.js";
 
 const router = Router();
-
-// Registrar usuarios
-router.post(
-  "/register",
-  passport.authenticate("signupStrategy", {
-    failureRedirect: "fail-Register",
-  }),
-  SessionsController.renderRegister
-);
-
+//rutas de registro
+            //multer agrega el objeto req.file
+router.post("/register",profileUploader.single("profile"), passport.authenticate("signupStrategy", {failureRedirect:"/api/sessions/failSignup"}), SessionsController.redirectLogin);
 router.get("/fail-Register", SessionsController.renderRegisterFail);
-
-// Loguear usuarios
-router.post(
-  "/login",
-  passport.authenticate("loginStrategy", {
-    failureRedirect: "/api/sessions/fail-Login",
-  }),
-  SessionsController.renderLogin
-);
-
+//rutas de login
+router.post("/login",passport.authenticate("loginStrategy",{failureRedirect:"/api/sessions/fail-Login",}),SessionsController.renderProfile);
 router.get("/fail-Login", SessionsController.renderLoginFail);
-
-// Cerrar sesion
-router.get("/logout", SessionsController.renderLogout);
-
+//ruta de logout
+router.get("/logout", SessionsController.logout);
+//ruta para recuperar password
 router.post("/recupassword",SessionsController.forgotPassword)
 
 export { router as sessionRouter };

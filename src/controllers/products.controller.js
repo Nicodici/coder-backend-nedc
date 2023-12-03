@@ -9,13 +9,9 @@ export class ProductsController {
       const result = await ProductService.getProducts();
       if (req.query.limit) {
         result = result.slice(0, req.query.limit);
-        return res.send({
-          status: "Success",
-          data: result,
-          message: "Productos obtenidos",
-        });
+        return res.send({status: "Success",data: result,message: "Productos obtenidos",});
       }
-      res.send({ status: "Success", data: users });
+      res.send({ status: "Success", data: result });
     } catch (error) {
       logger.error("Error al obtener los productos");
       res.status(400).json({ status: "error", message: error.message });
@@ -24,9 +20,8 @@ export class ProductsController {
 
   static getProductById = async (req, res) => {
     try {
-      const result = await ProductService.getProductById(
-        parseInt(req.params.pid)
-      );
+      const productID = req.params.pid;
+      const result = await ProductService.getProductById((productID));
       res.send({
         status: "Success",
         data: result,

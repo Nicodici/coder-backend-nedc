@@ -1,7 +1,7 @@
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import { createHash, isValidPassword } from "../utils.js";
-import { usersDao } from "../dao/managers/index.js";
+import {UsersService} from "../services/users.services.js"
 
 export const initializePassport = ()=>{
     // Configurar la estrategia de registro
@@ -13,9 +13,9 @@ export const initializePassport = ()=>{
         },
         async (req, username, password, done)=>{
             try {
-                const {first_name, Last_name, age} = req.body;
-                // Verificar si el usuario ya está registrado
-                const user = await usersDao.getUserByEmail(username);
+                console.log(req.file)
+                const {first_name, last_name, age} = req.body;
+                const user = await UsersService.getUserByEmail(username);
                 if(user){
                     return done(null, false)
                 }
@@ -23,10 +23,11 @@ export const initializePassport = ()=>{
                     first_name:first_name,
                     email: username,
                     password:createHash(password),
-                    last_name:Last_name,
-                    age:age
+                    last_name:last_name,
+                    age:age,
+                    avatar:req.file.filename
                 }
-                const userCreated = await usersDao.saveUser(newUser);
+                const userCreated = await UsersService.saveUser(newUser);
                 return done(null,userCreated)// En este punto, passport completa el proceso exitosamente
             } catch (error) {
                 return done(error)
@@ -42,12 +43,14 @@ export const initializePassport = ()=>{
         async(username, password, done)=>{
             try {
                 // Verificar si el usuario está registrado
-                const user = await usersDao.getUserByEmail(username);
+                const user = await UsersService.getUserByEmail(username);
                 if(!user){
                     return done(null, false)
                 }
                 // Si el usuario existe, validar la contraseña
                 if(isValidPassword(user,password)){
+                    user.last_connection = new Date();
+                    const userAct = await UsersService.updateUser(user._id, user)
                     return done(null,user);
                 } else {
                     return done(null, false);
@@ -64,7 +67,7 @@ export const initializePassport = ()=>{
     });
 
     passport.deserializeUser(async(id,done)=>{
-        const user = await usersDao.getUserById(id);
+        const user = await UsersService.getUserById(id);
         done(null,user) // req.user ---> sesiones req.sessions.user
     });
 };

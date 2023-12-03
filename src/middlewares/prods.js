@@ -3,14 +3,13 @@ import { createProductErrorMsg } from "../services/error/createProductError.serv
 import { EError } from "../enums/EError.js";
 
 export const validateFields = (req, res, next) => {
-  const { title, description, price, code, thumbnail, stock, category } =
+  const { title, description, price, code, stock, category } =
     req.body;
   if (
     !title ||
     !description ||
     !price ||
     !code ||
-    !thumbnail ||
     !stock ||
     !category
   ) {

@@ -28,19 +28,20 @@ export class UsersMongo {
   }
 
   // Metodo para obtener usuario por email
-  async getUserByEmail(email) {
+  async getByEmail(userEmail){
     try {
-      console.log("email ingresado", email)
-      const user = await this.model.findOne({email: email});
-      console.log("usuario con email buscado", useremail)
-      if (!user) {
-        return null;
-      }
-      return user;
+        console.log(userEmail)
+        const user = await this.model.findOne({email:userEmail}).lean();
+        if(user){
+            return user;
+        } else{
+            return null;
+        }
     } catch (error) {
-      throw new Error("Hubo un error al obtener el usuario", error.message);
+        console.log(error.message);
+        throw error;
     }
-  }
+};
 
   //actualizar el usuario
   async updateUser(id, user) {

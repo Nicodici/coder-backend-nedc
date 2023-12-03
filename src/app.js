@@ -13,10 +13,13 @@ import { productsRouter } from "./routes/products.routes.js";
 import { cartsRouter } from "./routes/carts.routes.js";
 import { viewRouter } from "./routes/view.routes.js";
 import { sessionRouter } from "./routes/sessions.routes.js";
+import { usersRouter } from "./routes/users.routes.js";
 import { ProductsMongo } from "./dao/managers/mongo/productsMongo.js";
 import dotenv from "dotenv";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { addLogger } from "./helpers/logger.js";
+import {swaggerSpecs} from "./config/swagger.config.js"
+import swaggerUI from "swagger-ui-express";
 
 dotenv.config();
 
@@ -106,7 +109,9 @@ servidorSocket.on("connection", async (socket) => {
 
 // Rutas
 app.use("/api/products", productsRouter);
-app.use("/api/carritos", cartsRouter);
+app.use("/api/carts", cartsRouter);
 app.use("/api/sessions", sessionRouter);
+app.use("/api/users",usersRouter)
 app.use(viewRouter);
 app.use(errorHandler);
+app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs))

@@ -1,1 +1,3 @@
 {"level":"warn","message":"Error al obtener el producto por ID"}{"level":"warn","message":"Error al obtener el producto por ID"}
+{"level":"error","message":"Error al obtener los productos"}
+{"level":"warn","message":"Error al obtener el producto por ID"}

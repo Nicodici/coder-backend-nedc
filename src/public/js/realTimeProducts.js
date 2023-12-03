@@ -16,7 +16,6 @@ form.addEventListener("submit", (e) => {
     let code = document.getElementById("code").value;
     let category = document.getElementById("category").value;
     let stock = document.getElementById("stock").value;
-    let thumbnail = document.getElementById("thumbnail").value;
 
     socketClient.emit("addProduct", {
         title,
@@ -25,7 +24,6 @@ form.addEventListener("submit", (e) => {
         code,
         category,
         stock,
-        thumbnail
     });
 
     form.reset();

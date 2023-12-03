@@ -14,7 +14,6 @@ export class ViewsController {
                 query = {stock: {$gte:stockValue}};
             }
             const result = await ProductService.getProductsByPage(query, {page, limit, sort:{price:sortValue}, lean:true });
-            //console.log(result);
     
             const baseUrl = `${req.protocol}://${req.get("host")}${req.originalUrl}`
             const resultProductsView = {
@@ -29,7 +28,6 @@ export class ViewsController {
                 hasNextPage: result.hasNextPage,
                 nextLink: result.hasNextPage ? baseUrl.includes("page") ? baseUrl.replace(`page=${result.page}`, `page=${result.nextPage}`) : baseUrl.includes("?") ? baseUrl.concat(`&page=${result.nextPage}`) : baseUrl.concat(`?page=${result.nextPage}`) : null
             }
-            //console.log(resultProductsView);
     
             res.render("home", {...resultProductsView, user: req.session.userInfo});
         } catch (error) {
@@ -39,7 +37,8 @@ export class ViewsController {
     };
 
     static renderRealTimeProducts = async (req, res) => {
-        res.render("realTimeProducts", { user: req.session.userInfo });
+        console.log(req)
+        res.render("realTimeProducts", { user:req.session.userInfo });
     };
 
     static renderLogin = async (req, res) => {

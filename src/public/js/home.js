@@ -8,7 +8,6 @@ let user;
 
 
 chatbox.addEventListener("keyup", (e) => {
-    console.log(e.key);
     if (e.key === "Enter") {
         if (chatbox.value.trim().length > 0) {//corrobamos que el usuario no envie datos vacios
             socketClient.emit("message", { user: user, message: chatbox.value });
@@ -19,7 +18,6 @@ chatbox.addEventListener("keyup", (e) => {
 
 socketClient.on("messageHistory", (dataServer) => {
     let messageElmts = "";
-    // console.log("dataServer", dataServer);
     dataServer.forEach(item => {
         messageElmts = messageElmts +
             `<div class="toast fade show mb-1" role="alert" aria-live="assertive" aria-atomic="true">

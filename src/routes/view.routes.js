@@ -1,7 +1,5 @@
 import { Router } from "express";
-
 import { checkUserAuth, showLoginView } from "../middlewares/auth.js";
-
 import { ViewsController } from "../controllers/views.controller.js";
 
 const router = Router();
