@@ -42,8 +42,8 @@ export class ViewsController {
           ? baseUrl.includes("page")
             ? baseUrl.replace(`page=${result.page}`, `page=${result.nextPage}`)
             : baseUrl.includes("?")
-            ? baseUrl.concat(`&page=${result.nextPage}`)
-            : baseUrl.concat(`?page=${result.nextPage}`)
+              ? baseUrl.concat(`&page=${result.nextPage}`)
+              : baseUrl.concat(`?page=${result.nextPage}`)
           : null,
       };
 
@@ -55,8 +55,13 @@ export class ViewsController {
   };
 
   static renderRealTimeProducts = async (req, res) => {
-    const isAdmin = verifyAdmin(req.user.role);
-    res.render("realTimeProducts", { isAdmin });
+    try {
+      const isAdmin = verifyAdmin(req.user?.role);
+      res.render("realTimeProducts", { isAdmin });
+
+    } catch (error) {
+      res.json ({status:error, message:error.message})
+    }
   };
 
   static renderLogin = async (req, res) => {

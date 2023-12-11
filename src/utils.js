@@ -24,6 +24,7 @@ const checkValidFields = (body) => {
   return true;
 };
 
+
 export const verifyAdmin = ((req, res, next) => {
   if (req === "admin") {
    return true;
