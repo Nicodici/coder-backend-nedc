@@ -9,20 +9,20 @@ const userSchema = new mongoose.Schema({
   },
   last_name: {
     type: String,
-    required: false,
+    required: true,
   },
   email: {
     type: String,
     required: true,
     unique: true,
   },
-  age: {
-    type: Number,
-    required: false,
-  },
   password: {
     type: String,
     required: true,
+  },
+  age: {
+    type: Number,
+    required:true
   },
   cart: {
     type: mongoose.Schema.Types.ObjectId,
@@ -30,7 +30,6 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true,
     enum: ["admin", "user","premium"],
     default: "user",
   },
@@ -39,11 +38,9 @@ const userSchema = new mongoose.Schema({
       {
         name:{
           type:String,
-          required:true
         },
         reference:{
           type:String,
-          required:true
         }
       }
     ],
@@ -60,7 +57,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar:{
     type:String,
-    required:true
+    default:""
   }
 });
 

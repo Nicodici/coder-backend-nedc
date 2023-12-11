@@ -7,7 +7,7 @@ const router = Router();
 //rutas de registro
             //multer agrega el objeto req.file
 router.post("/register",profileUploader.single("profile"), passport.authenticate("signupStrategy", {failureRedirect:"/api/sessions/failSignup"}), SessionsController.redirectLogin);
-router.get("/fail-Register", SessionsController.renderRegisterFail);
+router.get("/failSignup", SessionsController.failSignup);
 //rutas de login
 router.post("/login",passport.authenticate("loginStrategy",{failureRedirect:"/api/sessions/fail-Login",}),SessionsController.renderProfile);
 router.get("/fail-Login", SessionsController.renderLoginFail);

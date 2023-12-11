@@ -9,7 +9,7 @@ socketClient.on("sendProducts", (obj) => {
 let form = document.getElementById("formProduct");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    
+    let _id = document.getElementById("id").value;
     let title = document.getElementById("title").value;
     let description = document.getElementById("description").value;
     let price = document.getElementById("price").value;
@@ -18,6 +18,7 @@ form.addEventListener("submit", (e) => {
     let stock = document.getElementById("stock").value;
 
     socketClient.emit("addProduct", {
+        _id,
         title,
         description,
         price,
@@ -53,7 +54,7 @@ function updateproduct(productsList) {
         const row = document.createElement("tr");
 
         const idCell = document.createElement("td");
-        idCell.textContent = product.pid;
+        idCell.textContent = product._id;
         row.appendChild(idCell);
 
         const thumbnailCell = document.createElement("td");

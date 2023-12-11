@@ -62,9 +62,11 @@ export class ViewsController {
     } catch (error) {
       res.json ({status:error, message:error.message})
     }
+  
   };
 
   static renderLogin = async (req, res) => {
+    console.log(req.session.user)
     res.render("login", { user: req.session.userInfo });
   };
 
