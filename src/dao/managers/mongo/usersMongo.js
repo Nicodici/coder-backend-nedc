@@ -9,7 +9,7 @@ export class UsersMongo {
   async saveUser(user) {
     try {
       console.log("user llega al dao",user)
-       const  newUserBD = await this.model.create(user);
+       const newUserBD = await this.model.create(user);
       console.log("nuevo usuario en la bd",newUserBD)
       return newUserBD;
     } catch (error) {

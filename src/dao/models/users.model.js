@@ -30,7 +30,6 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true,
     enum: ["admin", "user","premium"],
     default: "user",
   },
@@ -39,13 +38,9 @@ const userSchema = new mongoose.Schema({
       {
         name:{
           type:String,
-          required:true,
-          default:""
         },
         reference:{
           type:String,
-          required:true,
-          default:""
         }
       }
     ],
@@ -62,7 +57,6 @@ const userSchema = new mongoose.Schema({
   },
   avatar:{
     type:String,
-    required:true,
     default:""
   }
 });

@@ -27,7 +27,7 @@ export const initializePassport = ()=>{
                     password:createHash(password),
                     age:age,
                 }
-                const userCreated = await UsersService.saveUser(newUser); //aca hay un error
+                const userCreated = await UsersService.saveUser(newUser); 
                 console.log("usuario creado en la base de datos",userCreated);
                 return done(null,userCreated)// En este punto, passport completa el proceso exitosamente
             } catch (error) {
