@@ -24,6 +24,14 @@ const checkValidFields = (body) => {
   return true;
 };
 
+export const verifyAdmin = ((req, res, next) => {
+  if (req === "admin") {
+   return true;
+  }
+  return false;
+
+});
+
 //configuracion para guardas las imagenes de los usuarios
 const profileStorage = multer.diskStorage({
   // definimos la ruta donde se van a guardar los archivos
@@ -48,14 +56,6 @@ export const profileUploader = multer({
   fileFilter: multerProfileFilter,
 });
 
-export const verifyAdmin = ((req, res, next) => {
-  console.log(req);
-  if (req === "admin") {
-   return true;
-  }
-  return false;
-
-});
 
 //configuracion para guardar la imagen de los products
 const productsStorage = multer.diskStorage({
@@ -71,3 +71,16 @@ const productsStorage = multer.diskStorage({
 export const productUploader = multer({ storage: productsStorage });
 
 //creacion de filtro para nuestra carga de imagenes de perfil
+
+
+//configuracion para guardar la imagen de los documentos
+const documentsStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "/multer/users/documents"));
+  }, //definimos el nombre de los archivos a guardar
+  filename: function (req, file, cb) {
+    cb(null, `${req.user.email}-documento-${file.originalname}`);
+  },
+});
+//creamos uploader de profiles
+export const documentsUploader = multer({ storage: documentsStorage });

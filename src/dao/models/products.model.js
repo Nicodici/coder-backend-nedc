@@ -15,6 +15,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  thumbnail:{
+    type: String,
+    required: true
+  },
   code: {
     type: String,
     required: true,
@@ -29,6 +33,10 @@ const productSchema = new mongoose.Schema({
     required: true,
     enum: ["Zapatilla", "Pantalon", "Remera", "Campera"],
   },
+  owner:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"users"
+},
 });
 
 productSchema.plugin(mongoosePaginate);
