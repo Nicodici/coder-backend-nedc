@@ -13,21 +13,22 @@ export const initializePassport = ()=>{
         },
         async (req, username, password, done)=>{
             try {
-                console.log(req.file)
-                const {first_name, last_name, age} = req.body;
+                const {first_name, last_name,age} = req.body;
                 const user = await UsersService.getUserByEmail(username);
+                console.log("encontro el usuario por mail?", user)
                 if(user){
                     return done(null, false)
                 }
+
                 const newUser = {
                     first_name:first_name,
+                    last_name:last_name,
                     email: username,
                     password:createHash(password),
-                    last_name:last_name,
                     age:age,
-                    avatar:req.file.filename
                 }
-                const userCreated = await UsersService.saveUser(newUser);
+                const userCreated = await UsersService.saveUser(newUser); //aca hay un error
+                console.log("usuario creado en la base de datos",userCreated);
                 return done(null,userCreated)// En este punto, passport completa el proceso exitosamente
             } catch (error) {
                 return done(error)

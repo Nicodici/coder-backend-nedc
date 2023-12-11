@@ -28,10 +28,6 @@ export class UsersController{
         try {
             const userId = req.params.uid;
             const user = await UsersService.getUserById(userId);
-
-            if (!user){
-                return res.send ("No existe el usuario")
-            }
             const identificacion = req.files?.identificacion?.[0] || null;
             const domicilio = req.files?.domicilio?.[0] || null;
             const estadoDeCuenta = req.files?.estadoDeCuenta?.[0] || null;

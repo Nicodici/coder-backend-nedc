@@ -6,7 +6,7 @@ export class UsersService{
     };
 
     static saveUser = async(newUser)=>{
-        return await usersDao.save(newUser);
+        return await usersDao.saveUser(newUser);
     };
 
     static getUserById = async(userId)=>{

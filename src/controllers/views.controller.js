@@ -55,7 +55,7 @@ export class ViewsController {
   };
 
   static renderRealTimeProducts = async (req, res) => {
-    const isAdmin = verifyAdmin(req.user.role);
+    const isAdmin = verifyAdmin(req.user?.role);
     res.render("realTimeProducts", { isAdmin });
   };
 

@@ -8,7 +8,10 @@ export class UsersMongo {
   // Metodo para guardar los usuarios
   async saveUser(user) {
     try {
-      return await this.model.create(user);
+      console.log("user llega al dao",user)
+       const  newUserBD = await this.model.create(user);
+      console.log("nuevo usuario en la bd",newUserBD)
+      return newUserBD;
     } catch (error) {
       throw new Error("Hubo un error al guardar el usuario", error.message);
     }
@@ -30,8 +33,7 @@ export class UsersMongo {
   // Metodo para obtener usuario por email
   async getByEmail(userEmail){
     try {
-        console.log(userEmail)
-        const user = await this.model.findOne({email:userEmail}).lean();
+      const user = await this.model.findOne({email:userEmail}).lean();
         if(user){
             return user;
         } else{
