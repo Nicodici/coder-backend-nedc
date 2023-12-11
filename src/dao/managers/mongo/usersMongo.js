@@ -5,7 +5,7 @@ export class UsersMongo {
     this.model = usersModel;
   }
 
-  // Metodo para guardar los usuarios
+  // Metodo para registrar los usuarios
   async saveUser(user) {
     try {
       console.log("user llega al dao",user)
