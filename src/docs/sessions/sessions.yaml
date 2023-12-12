@@ -1,0 +1,96 @@
+paths:
+  /api/sessions/register:
+    post:
+      summary: Endpoint para crear un nuevo usuario en la BD
+      tags:
+        - Sesiones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                profile:
+                  type: string
+      responses:
+        "201":
+          description: Se creó correctamente el nuevo usuario
+        "400":
+          description: Los datos ingresados no son válidos
+        "401":
+          description: El usuario ya existe
+        "500":
+          description: Se produjo un error interno en el servidor
+
+
+  /api/sessions/login:
+    post:
+      summary: Endpoint para loguiar un usuario 
+      tags:
+        - Sesiones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+            responses:
+        "201":
+          description: Se logueo el usuario correctamente
+        "400":
+          description: Los datos ingresados no son válidos
+        "500":
+          description: Se produjo un error interno en el servidor
+          
+components:
+  schemas:
+    Usuarios:
+      type: object
+      properties: 
+        _id:
+          type: ObjectId
+          description: id del usuario generado por MongoDB
+        first_name:
+          type: String
+          description: Nombre del usuario
+        last_name:
+          type: String
+          description: Apellido del usuario
+        email:
+          type: String
+          description: Email del usuario
+        password:
+          type: String
+          description: Password del usuario
+        age:
+          type: Number
+          description: Edad del usuario
+        role:
+          type: String
+          description: Rol del usuario
+        last_connection:
+          type: String
+          description: Ultima conexion del usuario
+      example:
+        first_name: Nicolas
+        last_name: Di Ciuccio
+        email: nicolas@coder.com
+        password: coder
+        age: 30
+        code: nkdha30
+        role: Admin
+        last_connection: 
