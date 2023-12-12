@@ -52,7 +52,7 @@ paths:
     get:
       summary: Endpoint para obtener productos por id
       tags:
-       - Productos
+        - Productos
       parameters:
         -name: pid
         -in: path
@@ -69,7 +69,6 @@ paths:
           description: Se produjo un error en el servidor
         "404":
           description: El producto no existe
-
     put:
       summary: Actualizar un producto
       tags:
@@ -136,15 +135,14 @@ paths:
         "404":
           description: El producto no existe
 
-
 components:
   schemas:
     Producto:
       type: object
-      properties: 
+      properties:
         _id:
           type: ObjectId
-          description: id del usuario generado por MongoDB
+          description: id del producto generado por MongoDB
         title:
           type: String
           description: Titulo del producto
@@ -156,7 +154,7 @@ components:
           description: Precio del producto
         thumbnail:
           type: String
-          description: Url de la imagen
+          description: Url de la imagen del producto
         code:
           type: String
           description: Codigo del producto
@@ -175,5 +173,3 @@ components:
         code: nkdha30
         stock: 50
         category: Zapatilla
-
-  

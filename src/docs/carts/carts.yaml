@@ -1,0 +1,155 @@
+paths:
+  /api/carts:
+    get:
+      summary: Endpoint para obtener todos los carritos
+      tags:
+        - Carritos
+      responses:
+      "200":
+        description: Se obtuvieron correctamente todos los carritos
+      "401":
+        description: No tienes permisos para esta ruta
+      "500":
+        description: Se produjo un error interno en el servidor
+    post:
+      summary: Endpoint para agregar un carrito
+      tags:
+       - Carritos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      ref:
+                        type: string
+                      quantity:
+                        type: number
+      responses:
+        "200":
+          description: Se agrego añadio correctamente el carrito
+        "400":
+          description: Error al crear el carrito
+        "401":
+          description: No tienes permisos para esta ruta
+        "500":
+          description: Se produjo un error interno en el servidor
+      
+  /api/carts/{cid}:
+    get:
+      summary: Endpoint para obtener un carrito por su ID
+      tags:
+       - Carritos
+      parameters:
+       - name: pid
+       - in: path
+       - description: ID del carrito
+       - required: true
+       - type: string
+       - example: artje4310
+      responses:
+       "200":
+        description: Se obtuvo correctamente el carrito
+       "400":
+        description: Error al obtener el carrito
+       "401":
+        description: No tienes permisos para esta ruta
+       "404":
+        description: El producto no existe
+       "500":
+        description: Se produjo un error en el servidor
+    put:
+      summary: Endpoint para actualizar un carrito por su ID
+      tags:
+        - Carritos
+      parameters:
+        - name: pid
+        - in: path
+        - description: ID del carrito
+        - required: true
+        - type: string
+        - example: ner5040ja
+      responses:
+        "200":
+          description: Se actualizo correctamente el carrito
+        "400":
+          description: Error al actualizar el carrito
+        "401":
+          description: No tienes permisos para esta ruta
+        "404":
+          description: El producto no existe
+        "500":
+          description: Se produjo un error en el servidor
+    delete:
+      summary: Endpoint para eliminar un carrito por su ID
+      tags:
+        - Carritos
+      parameters:
+        -name: pid
+        -in: path
+        -description: ID del carrito
+        -required: true
+        -type: string
+        -example: bu2039al
+      responses:
+        "200":
+          description: Se elimino correctamente el carrito
+        "400":
+          description: Error al eliminar el carrito
+        "401":
+          description: No tienes permisos para esta ruta
+        "404":
+          description: El producto no existe
+        "500":
+          description: Se produjo un error en el servidor
+
+  /:cid/product/:pid:
+    post:
+      summary: Añadir un producto a un carrito buscado por su ID
+      tags:
+        - Carritos
+      parameters:
+        - name: cid
+        - in: path
+        - description: ID del carrito
+        - required: true
+        - type: string
+        - example: bu2039al
+        - name: pid
+        - in: path
+        - description: ID del producto
+        - required: true
+        - type: string
+        - example: jer8960kla
+      responses:
+        "200":
+          description: Producto añadido correctamente
+        "400":
+          description: Error al añadir el producto
+        "404":
+          description: El carrito o producto no existe
+        "500":
+        description: Se produjo un error en el servidor
+
+# components:
+#   schemas:
+#     Carrito:
+#       type: object
+#       properties:
+#         products:
+#           type: array
+#             items:
+#               _id:
+#                 type: ObjectId
+#                 description: ID del producto
+#               quantity:
+#                 type: Number
+#                 description: Cantidad de unidades del producto
