@@ -53,4 +53,13 @@ export class UsersMongo {
       throw new Error("Hubo un error al actualizar el usuario", error.message);
     }
   }
+
+  async getUsers(){
+    try {
+      const users = await this.model.find().lean();
+      return users;
+    } catch (error) {
+      throw new error ("Error al obtener todos los usuarios", error.message)
+    }
+  }
 }

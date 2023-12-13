@@ -1,6 +1,16 @@
 import { UsersService } from "../services/users.services.js";
 
 export class UsersController{
+
+static getUsers = async(req,res)=>{
+    try {
+        const users = await UsersService.getUsers();
+        res.json({status:"success", data:users});
+    } catch (error){
+        res.json({status:"error", message:error.message});
+    } 
+}
+
     static modifyRole = async(req,res)=>{
         try {
             const userId = req.params.uid;

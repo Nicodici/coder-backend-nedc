@@ -1,0 +1,19 @@
+<h1 class="text-center  p-5 bg-dark text-white rounded shadow">PANEL DE CONTROL ADMIN</h1>
+
+<h2>Lista de usuarios registrados</h2>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Email</th>
+    <th>Rol</th>
+  </tr>
+  {{#each usersList}}
+    <tr>
+      <td>{{this.first_name}}</td>
+      <td>{{this.last_name}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.role}}</td>
+    </tr>
+  {{/each}}
+</table>

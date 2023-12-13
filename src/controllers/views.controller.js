@@ -1,4 +1,5 @@
 import { ProductService } from "../services/products.services.js";
+import { UsersService } from "../services/users.services.js";
 import { verifyAdmin } from "./../utils.js";
 
 export class ViewsController {
@@ -64,7 +65,12 @@ export class ViewsController {
     }
   
   };
-
+  static renderAdmin = async(req,res)=>{
+    
+    const usersList = await UsersService.getUsers();
+    console.log(usersList)
+    res.render("admin", {usersList});
+  }
   static renderLogin = async (req, res) => {
     console.log(req.session.user)
     res.render("login", { user: req.session.userInfo });
@@ -87,4 +93,5 @@ export class ViewsController {
   static renderforgot = async (req, res) => {
     res.render("recupassword");
   };
+
 }

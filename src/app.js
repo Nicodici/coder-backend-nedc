@@ -18,7 +18,7 @@ import { ProductsMongo } from "./dao/managers/mongo/productsMongo.js";
 import dotenv from "dotenv";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { addLogger } from "./helpers/logger.js";
-import {swaggerSpecs} from "./config/swagger.config.js"
+import { swaggerSpecs } from "./config/swagger.config.js";
 import swaggerUI from "swagger-ui-express";
 
 dotenv.config();
@@ -74,17 +74,15 @@ servidorSocket.on("connection", async (socket) => {
 
   const listaProductos = await administradorProductosSocket.getProducts();
   servidorSocket.emit("sendProducts", listaProductos);
-
+  
   socket.on("addProduct", async (product) => {
     await administradorProductosSocket.addProduct(product);
-    console.log(administradorProductosSocket.addProduct(product));
     const listaProductosActualizada =
       await administradorProductosSocket.getProducts();
     servidorSocket.emit("sendProducts", listaProductosActualizada);
   });
 
   socket.on("deleteProduct", async (id) => {
-    console.log(id);
     await administradorProductosSocket.deleteProduct(id);
     const listaProductosActualizada =
       await administradorProductosSocket.getProducts({});
@@ -100,7 +98,6 @@ servidorSocket.on("connection", async (socket) => {
   });
 
   socket.on("message", async (data) => {
-    console.log("data", data);
     const messageCreated = await chatModel.create(data);
     const messages = await chatModel.find();
     servidorSocket.emit("messageHistory", messages);
@@ -111,7 +108,7 @@ servidorSocket.on("connection", async (socket) => {
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/sessions", sessionRouter);
-app.use("/api/users",usersRouter)
+app.use("/api/users", usersRouter);
 app.use(viewRouter);
 app.use(errorHandler);
-app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs))
+app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs));

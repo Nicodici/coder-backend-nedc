@@ -1,7 +1,6 @@
 const socketClient = io();
 
 socketClient.on("sendProducts", (obj) => {
-    //console.log(products);
     updateproduct(obj);
 });
 

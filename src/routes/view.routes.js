@@ -18,6 +18,8 @@ router.get("/chat", ViewsController.renderChat);
 
 router.get("/perfil", checkUserAuth, ViewsController.renderProfile);
 
-router.get("/recupassword", ViewsController.renderforgot)
+router.get("/recupassword", ViewsController.renderforgot);
+
+router.get("/admin",ViewsController.renderAdmin)
 
 export { router as viewRouter };
