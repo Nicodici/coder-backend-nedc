@@ -7,23 +7,23 @@ socketClient.on("sendProducts", (obj) => {
 // Agregar productos
 let form = document.getElementById("formProduct");
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let _id = document.getElementById("id").value;
-    let title = document.getElementById("title").value;
+    console.log(e)
+    e.preventDefault();    let title = document.getElementById("title").value;
     let description = document.getElementById("description").value;
     let price = document.getElementById("price").value;
     let code = document.getElementById("code").value;
     let category = document.getElementById("category").value;
     let stock = document.getElementById("stock").value;
+    let avatar = document.getElementById("avatar").value;
 
     socketClient.emit("addProduct", {
-        _id,
         title,
         description,
         price,
         code,
         category,
         stock,
+        avatar
     });
 
     form.reset();

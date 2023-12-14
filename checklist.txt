@@ -1,0 +1,33 @@
+Home____
+Pantalla de inicio con carga de productos: ok
+
+Registro:
+Registro de usuarios: ok
+validaciones en caso de estar logueado: ok
+
+Agregar productos:
+Solo se habilita el formulario para agregar productos si es admin: ok
+Eliminacion de producto por id: Ok
+Tabla de productos:ok
+
+
+Pantalla de inicio con carga de productos: ok
+falta cargar imagenes de los productos (multer)
+
+PANEL DE ADMIN:
+vista de todos los usuarios: ok
+funcion para poder eliminar usuarios: falta
+
+
+
+
+PAGINA DE LOGIN: OK
+redireccionamiento en caso de login: ok
+
+PERFIL DE USUARIO.
+Carga de datos del perfil: ok
+Falta cargar imagen
+Falta boton de logout
+
+SWAGGER:
+OK

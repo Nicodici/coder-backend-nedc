@@ -43,8 +43,8 @@ export class ViewsController {
           ? baseUrl.includes("page")
             ? baseUrl.replace(`page=${result.page}`, `page=${result.nextPage}`)
             : baseUrl.includes("?")
-              ? baseUrl.concat(`&page=${result.nextPage}`)
-              : baseUrl.concat(`?page=${result.nextPage}`)
+            ? baseUrl.concat(`&page=${result.nextPage}`)
+            : baseUrl.concat(`?page=${result.nextPage}`)
           : null,
       };
 
@@ -57,41 +57,37 @@ export class ViewsController {
 
   static renderRealTimeProducts = async (req, res) => {
     try {
-      const isAdmin = verifyAdmin(req.user?.role);
+      const isAdmin = verifyAdmin(req.user.role);
+      console.log(req.user)
+      console.log(isAdmin)
       res.render("realTimeProducts", { isAdmin });
-
     } catch (error) {
-      res.json ({status:error, message:error.message})
+      res.json({ status: error, message: error.message });
     }
-  
   };
-  static renderAdmin = async(req,res)=>{
-    
+  static renderAdmin = async (req, res) => {
     const usersList = await UsersService.getUsers();
-    console.log(usersList)
-    res.render("admin", {usersList});
-  }
+    res.render("admin", { usersList });
+  };
   static renderLogin = async (req, res) => {
-    console.log(req.session.user)
-    res.render("login", { user: req.session.userInfo });
+    res.render("login", { user: req.user });
   };
 
   static renderRegister = async (req, res) => {
-    res.render("register", { user: req.session.userInfo });
+    res.render("register", { user: req.user });
   };
 
   static renderCart = async (req, res) => {
-    res.render("cart", { user: req.session.userInfo });
+    res.render("cart", { user: req.user });
   };
   static renderChat = async (req, res) => {
-    res.render("chat", { user: req.session.userInfo });
+    res.render("chat", { user: req.user });
   };
 
   static renderProfile = async (req, res) => {
-    res.render("profile", { user: req.session.userInfo });
+    res.render("profile", { user: req.user });
   };
   static renderforgot = async (req, res) => {
     res.render("recupassword");
   };
-
 }

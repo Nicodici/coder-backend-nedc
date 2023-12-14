@@ -34,6 +34,7 @@ export class ProductsController {
   };
 
   static addProduct = async (req, res) => {
+    console.log(req.body)
     try {
       const productData = req.body;
       productData.owner = req.user._id;

@@ -10,7 +10,7 @@ router.get("/", ProductsController.getProducts);
 
 router.get("/:pid", ProductsController.getProductById);
 
-router.post("/",checkAuthenticated, checkRole(["admin","premium"]), validateFields, productUploader.single("thumbnail"), ProductsController.addProduct);
+router.post("/",checkAuthenticated, checkRole(["admin","premium"]), validateFields, productUploader.single("avatar"), ProductsController.addProduct);
 
 router.put("/:pid", validateFields, ProductsController.updateProduct);
 

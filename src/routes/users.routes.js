@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { UsersController } from "./../controllers/users.controller.js";
-import { checkRole } from "../middlewares/auth.js";
-import { documentsUploader } from "./../utils.js";
+import { checkRole} from "../middlewares/auth.js";
+import { documentsUploader, verifyAdmin } from "./../utils.js";
 const router = Router();
 
-router.get("/admin", UsersController.getUsers);
+router.get("/admin",verifyAdmin, UsersController.getUsers);
 router.post("/premium/:uid", checkRole(["admin"]), UsersController.modifyRole);
 router.put(
   "/:uid/documents",

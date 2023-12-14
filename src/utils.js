@@ -32,18 +32,6 @@ export const verifyAdmin = ((req, res, next) => {
   return false;
 
 });
-
-
-export const isLogin = ((req,res,next) =>{
-  const logUser = false;
-  if (req.user){
-    logUser = true;
-    return logUser;
-  }else{
-    return logUser;
-  }
-})
-
 //configuracion para guardas las imagenes de los usuarios
 const profileStorage = multer.diskStorage({
   // definimos la ruta donde se van a guardar los archivos

@@ -31,8 +31,12 @@ static failSignup = (req,res)=>{
 
   static renderLogout = (req, res) => {
     req.session.destroy((error) => {
-      if (error)
-        return res.render("profile", { user: req.session.user, error });
+      console.log("ok")
+      if (error){
+        console.log(req.session)
+        return res.render("profile", { user: req.session, error });
+      }
+      console.log("error")
       res.redirect("/");
     });
   };

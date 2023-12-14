@@ -5,6 +5,7 @@ import { EError } from "../enums/EError.js";
 export const validateFields = (req, res, next) => {
   const { title, description, price, code, stock, category } =
     req.body;
+    console.log(req.body)
   if (
     !title ||
     !description ||
