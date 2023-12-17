@@ -1,6 +1,6 @@
 export const showLoginView = (req, res, next) => {
   // console.log("usuario",req.user)
-  if (req.session) {
+  if (req.session.user) {
     console.log(req.session)
     res.redirect("/perfil");
   } else {

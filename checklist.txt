@@ -23,6 +23,7 @@ funcion para poder eliminar usuarios: falta
 
 PAGINA DE LOGIN: OK
 redireccionamiento en caso de login: ok
+actualizacion de lastConection: falta
 
 PERFIL DE USUARIO.
 Carga de datos del perfil: ok
@@ -31,3 +32,8 @@ Falta boton de logout
 
 SWAGGER:
 OK
+
+
+DTO: falta
+
+RAILWAY: OK

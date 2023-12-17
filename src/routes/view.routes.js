@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { checkAuthenticated, isLogin, showLoginView } from "../middlewares/auth.js";
+import { isLogin, showLoginView } from "../middlewares/auth.js";
 import { ViewsController } from "../controllers/views.controller.js";
 
 const router = Router();
