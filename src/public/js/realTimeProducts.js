@@ -92,7 +92,6 @@ function updateproduct(productsList) {
 
 // elimina productos del catalogo por id
 document.getElementById("delete-btn").addEventListener("click", (e) => {
-    
     let pid = document.getElementById("id-prod").value;
     socketClient.emit("deleteProduct", pid);
     document.getElementById("id-prod").value = "";

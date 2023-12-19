@@ -16,13 +16,11 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   thumbnail:{
-    type: String,
-    required: true
+    type: String
   },
   code: {
     type: String,
     required: true,
-    unique: true,
   },
   stock: {
     type: Number,
@@ -35,7 +33,7 @@ const productSchema = new mongoose.Schema({
   },
   owner:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:"users"
+    ref:"users",
 },
 });
 

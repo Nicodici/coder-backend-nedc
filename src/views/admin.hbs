@@ -1,8 +1,12 @@
-<h1 class="text-center  p-5 bg-dark text-white rounded shadow">PANEL DE CONTROL ADMIN</h1>
+<h1 class="text-center p-5 bg-dark text-white rounded shadow">PANEL DE CONTROL
+  ADMIN</h1>
 
-{{#if administrador}}
-<h2>Lista de usuarios registrados</h2>
-<table>
+<h2 class="p-2 bg-dark">Lista de usuarios registrados</h2>
+<div class="container">
+
+
+<table class="table table-striped">
+  <thead></thead>
   <tr>
     <th>Nombre</th>
     <th>Apellido</th>
@@ -10,14 +14,16 @@
     <th>Rol</th>
   </tr>
   {{#each usersList}}
-    <tr>
-      <td>{{this.first_name}}</td>
-      <td>{{this.last_name}}</td>
-      <td>{{this.email}}</td>
-      <td>{{this.role}}</td>
-    </tr>
+    <tbody>
+
+      <tr>
+        <td>{{this.first_name}}</td>
+        <td>{{this.last_name}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.role}}</td>
+      </tr>
+    </tbody>
   {{/each}}
+
 </table>
-{{else}}
-  
-{{/if}}
+</div>

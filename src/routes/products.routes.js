@@ -10,8 +10,8 @@ router.get("/", ProductsController.getProducts);
 
 router.get("/:pid", ProductsController.getProductById);
 
-router.post("/",checkAuthenticated, checkRole(["admin","premium"]), validateFields, productUploader.single("avatar"), ProductsController.addProduct);
-
+router.post("/",checkRole(["admin"]),validateFields, ProductsController.addProduct);
+// checkAuthenticated, checkRole(["admin","premium"]), validateFields, productUploader.single("avatar")
 router.put("/:pid", validateFields, ProductsController.updateProduct);
 
 router.delete("/:pid", ProductsController.deleteProduct);

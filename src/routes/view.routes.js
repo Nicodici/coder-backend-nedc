@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { isLogin, showLoginView } from "../middlewares/auth.js";
+import { checkRole, isAdmin, isLogin, showLoginView } from "../middlewares/auth.js";
 import { ViewsController } from "../controllers/views.controller.js";
 
 const router = Router();
@@ -8,18 +8,20 @@ router.get("/", ViewsController.renderHome);
 
 router.get("/realTime", ViewsController.renderRealTimeProducts);
 
-router.get("/login", showLoginView, ViewsController.renderLogin);
+router.get("/login",showLoginView ,ViewsController.renderLogin); //middleware ok
 
-router.get("/register", showLoginView, ViewsController.renderRegister);
+router.get("/register", showLoginView, ViewsController.renderRegister); //middleware ok
 
-router.get("/cart", ViewsController.renderCart);
+router.get("/logout", ViewsController.logOut);
 
-router.get("/chat", ViewsController.renderChat);
+router.get("/cart", ViewsController.renderCart); //revisar
 
-router.get("/perfil", isLogin, ViewsController.renderProfile);
+router.get("/chat", ViewsController.renderChat); //revisar
+
+router.get("/perfil", isLogin, ViewsController.renderProfile); //middleware ok
 
 router.get("/recupassword", ViewsController.renderforgot);
 
-router.get("/admin",ViewsController.renderAdmin)
+router.get("/admin",isLogin,isAdmin,ViewsController.renderAdmin) //middleware ok
 
 export { router as viewRouter };

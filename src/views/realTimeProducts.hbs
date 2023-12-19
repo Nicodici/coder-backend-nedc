@@ -1,6 +1,12 @@
 <h2 class="text-center p-5 bg-dark text-white rounded shadow">PRODUCTOS</h2>
 {{#if isAdmin}}
-  <form class="forms" id="formProduct" method="post" action="/api/products/" enctype="multipart/form-data">
+  <form
+    class="forms"
+    id="formProduct"
+    method="post"
+    action="/api/products/"
+    enctype="multipart/form-data"
+  >
     <h2>Formulario de ingreso de producto</h2>
     <input
       class="controls"
@@ -47,8 +53,7 @@
     <p>Ingrese imagen del producto:</p>
     <input type="file" name="avatar" />
     <div class="d-grid gap-2">
-      <button
-        class="btn btn-success m-2" type="submit">Agregar</button>
+      <button class="btn btn-success m-2" type="submit">Agregar</button>
     </div>
 
     <br />
@@ -72,8 +77,8 @@
 {{else}}
 
   <div class="alert alert-danger" role="alert">
-    No puedes agregar productos. Deberas loguearte y poseer los permisos
-    necesarios (Rol:).
+    No puedes agregar o eliminar productos. Deberas loguearte y poseer los
+    permisos necesarios (Rol necesario: admin).
   </div>
 {{/if}}
 
@@ -83,5 +88,4 @@
 </article>
 
 <script src="/socket.io/socket.io.js"></script>
-
 <script src="/js/realTimeProducts.js"></script>

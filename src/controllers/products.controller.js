@@ -34,16 +34,13 @@ export class ProductsController {
   };
 
   static addProduct = async (req, res) => {
-    console.log(req.body)
     try {
       const productData = req.body;
-      productData.owner = req.user._id;
-      productData.thumbnail = req.file.filename;
       const result = await ProductService.addProduct(productData);
       res.json({ status: "Success", data: result, message: "producto creado" });
     } catch (error) {
       logger.warn("Error al crear un producto");
-      res.status(400).send("Error al crear un producto");
+      res.json(400).send("Error al crear un producto");
     }
   };
 

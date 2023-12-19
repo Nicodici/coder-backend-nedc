@@ -33,7 +33,6 @@ static failSignup = (req,res)=>{
     req.session.destroy((error) => {
       console.log("ok")
       if (error){
-        console.log(req.session)
         return res.render("profile", { user: req.session, error });
       }
       console.log("error")

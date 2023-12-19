@@ -37,7 +37,7 @@ export class ProductsMongo {
   async addProduct(product) {
     try {
       const productCreated = await this.model.create(product);
-      console.log(productCreated);
+      console.log("producto creado", productCreated);
       return productCreated;
     } catch (error) {
       console.log(error);

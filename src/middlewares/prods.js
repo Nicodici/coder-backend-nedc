@@ -5,7 +5,6 @@ import { EError } from "../enums/EError.js";
 export const validateFields = (req, res, next) => {
   const { title, description, price, code, stock, category } =
     req.body;
-    console.log(req.body)
   if (
     !title ||
     !description ||
@@ -17,9 +16,10 @@ export const validateFields = (req, res, next) => {
     CustomError.createError({
       name: "Error creacion de producto",
       cause: createProductErrorMsg(req.body),
-      message: "Existe un dato invalido para la creacion del usuario",
+      message: "Existe un dato invalido para la creacion del producto",
       errorCode: EError.CREATEPROD_ERROR,
     });
   }
+  (console.log("ok check"));
   next();
 };
