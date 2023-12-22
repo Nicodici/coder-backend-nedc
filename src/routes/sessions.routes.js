@@ -13,6 +13,7 @@ router.post("/login",passport.authenticate("loginStrategy",{failureRedirect:"/ap
 router.get("/fail-Login", SessionsController.renderLoginFail);
 //ruta de logout
 router.get("/logout", SessionsController.logout);
+
 //ruta para recuperar password
 router.post("/recupassword",SessionsController.forgotPassword)
 

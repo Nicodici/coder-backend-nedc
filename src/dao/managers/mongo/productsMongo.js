@@ -35,9 +35,9 @@ export class ProductsMongo {
 
   // agregar un producto
   async addProduct(product) {
+    console.log("producto que llega a mongo",product)
     try {
       const productCreated = await this.model.create(product);
-      console.log("producto creado", productCreated);
       return productCreated;
     } catch (error) {
       console.log(error);

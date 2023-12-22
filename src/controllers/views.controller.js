@@ -65,10 +65,10 @@ export class ViewsController {
   };
   static renderAdmin = async (req, res) => {
     const usersList = await UsersService.getUsers();
-    res.render("admin", {usersList});
+    res.render("admin", { usersList });
   };
   static renderLogin = async (req, res) => {
-    res.render("login", { user:req.user });
+    res.render("login", { user: req.user });
   };
 
   static renderRegister = async (req, res) => {
@@ -88,12 +88,12 @@ export class ViewsController {
   static renderforgot = async (req, res) => {
     res.render("recupassword");
   };
-  static logOut = async (req, res) => {
-    req.session.destroy((err) => {
-      if (err) {
-        return res.json({ status: "error", message: err.message });
-      }
-      res.redirect("/");
-    });
+
+  static renderResetPassword = async (req, res) => {
+    res.render("resetPassword");
   };
+
+  static logOut = async (req, res) => {
+    res.render("home");
+}
 }

@@ -68,6 +68,7 @@ const productsStorage = multer.diskStorage({
   },
 });
 //creamos uploader de profiles
+console.log(productsStorage)
 export const productUploader = multer({ storage: productsStorage });
 
 //creacion de filtro para nuestra carga de imagenes de perfil

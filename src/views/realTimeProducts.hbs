@@ -29,13 +29,12 @@
       id="stock"
       placeholder="Stock disponible"
     />
-    <input
-      class="controls"
-      type="text"
-      name="category"
-      id="category"
-      placeholder="Categoria del producto"
-    />
+    <select class="form-control controls" id="category" name="category">
+      <option value="Zapatilla">Zapatilla</option>
+      <option value="Remera">Remera</option>
+      <option value="Pantalon">Pantalon</option>
+      <option value="Campera">Campera</option>
+    </select>
     <input
       class="controls"
       type="number"
@@ -81,9 +80,10 @@
     permisos necesarios (Rol necesario: admin).
   </div>
 {{/if}}
-
-<h3>Lista de Productos</h3>
-<article id="list-products">
+<div class="container">
+  <h1 class="text-white">Lista de Productos</h1>
+</div>
+<article class="m-5" id="list-products">
 
 </article>
 

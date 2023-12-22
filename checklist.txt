@@ -19,8 +19,6 @@ vista de todos los usuarios: ok
 funcion para poder eliminar usuarios: falta
 
 
-
-
 PAGINA DE LOGIN: OK
 redireccionamiento en caso de login: ok
 actualizacion de lastConection: falta

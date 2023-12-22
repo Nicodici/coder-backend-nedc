@@ -3,6 +3,7 @@ import { createProductErrorMsg } from "../services/error/createProductError.serv
 import { EError } from "../enums/EError.js";
 
 export const validateFields = (req, res, next) => {
+  console.log("req.body:", req.body);
   const { title, description, price, code, stock, category } =
     req.body;
   if (
@@ -20,6 +21,5 @@ export const validateFields = (req, res, next) => {
       errorCode: EError.CREATEPROD_ERROR,
     });
   }
-  (console.log("ok check"));
   next();
 };

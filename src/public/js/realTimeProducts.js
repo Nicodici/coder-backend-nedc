@@ -8,13 +8,13 @@ socketClient.on("sendProducts", (obj) => {
 let form = document.getElementById("formProduct");
 form.addEventListener("submit", (e) => {
     console.log(e)
-    e.preventDefault();    let title = document.getElementById("title").value;
+    e.preventDefault();    
+    let title = document.getElementById("title").value;
     let description = document.getElementById("description").value;
     let price = document.getElementById("price").value;
     let code = document.getElementById("code").value;
     let category = document.getElementById("category").value;
     let stock = document.getElementById("stock").value;
-    let avatar = document.getElementById("avatar").value;
 
     socketClient.emit("addProduct", {
         title,
@@ -23,7 +23,6 @@ form.addEventListener("submit", (e) => {
         code,
         category,
         stock,
-        avatar
     });
 
     form.reset();
@@ -39,7 +38,7 @@ function updateproduct(productsList) {
 
     // Crear la fila de encabezado
     const headerRow = document.createElement("tr");
-    const headers = ["ID", "img", "Nombre del producto", "Precio", "Codigo", "Categoria", "Stock"];
+    const headers = ["ID", "Nombre del producto", "Descripcion", "Precio", "Codigo", "Categoria", "Stock"];
     headers.forEach((headerText) => {
         const headerCell = document.createElement("th");
         headerCell.textContent = headerText;
@@ -56,16 +55,13 @@ function updateproduct(productsList) {
         idCell.textContent = product._id;
         row.appendChild(idCell);
 
-        const thumbnailCell = document.createElement("td");
-        const thumbnailImage = document.createElement("img");
-        thumbnailImage.src = product.thumbnail;
-        thumbnailImage.alt = product.title;
-        thumbnailCell.appendChild(thumbnailImage);
-        row.appendChild(thumbnailCell);
-
         const titleCell = document.createElement("td");
         titleCell.textContent = product.title;
         row.appendChild(titleCell);
+
+        const descriptionCell = document.createElement("td");
+        descriptionCell.textContent = `${product.description}`;
+        row.appendChild(descriptionCell);
 
         const priceCell = document.createElement("td");
         priceCell.textContent = `$ ${product.price}`;

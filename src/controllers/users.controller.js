@@ -22,7 +22,7 @@ static getUsers = async(req,res)=>{
                 } else if(userRole === "premium"){
                     user.role = "user";
                 } else {
-                    return res.json({status:"error", message:"No se puede cambiar el role de este usuario"});
+                    return res.json({status:"error", message:"No se puede cambiar el rol de este usuario"});
                 };
                 await UsersService.updateUser(user._id,user);
                 return res.json({status:"success", message:`El nuevo rol del usuario es ${user.role}`});

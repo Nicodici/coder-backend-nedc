@@ -36,7 +36,9 @@ export class ProductsController {
   static addProduct = async (req, res) => {
     try {
       const productData = req.body;
+      console.log("productoque se envia al product service",productData)
       const result = await ProductService.addProduct(productData);
+      console.log("resultado final del producto",result)
       res.json({ status: "Success", data: result, message: "producto creado" });
     } catch (error) {
       logger.warn("Error al crear un producto");

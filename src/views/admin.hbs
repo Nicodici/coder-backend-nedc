@@ -1,29 +1,41 @@
-<h1 class="text-center p-5 bg-dark text-white rounded shadow">PANEL DE CONTROL
-  ADMIN</h1>
+<h1 class="text-center p-5 bg-dark text-white">PANEL DE CONTROL ADMIN</h1>
 
-<h2 class="p-2 bg-dark">Lista de usuarios registrados</h2>
+<h2 class="text-center text-white p-2 m-5 bg-dark">Lista de usuarios registrados</h2>
 <div class="container">
 
+  <table class="table table-striped">
+    <thead></thead>
+    <tr class="table-active" >
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Rol</th>
+      <th>ID</th>
+    </tr>
+    {{#each usersList}}
+      <tbody class="bg-dark">
 
-<table class="table table-striped">
-  <thead></thead>
-  <tr>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Email</th>
-    <th>Rol</th>
-  </tr>
-  {{#each usersList}}
-    <tbody>
+        <tr>
+          <td>{{this.first_name}}</td>
+          <td>{{this.last_name}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.role}}</td>
+          <td>{{this._id}}</td>
+        </tr>
+      </tbody>
+    {{/each}}
 
-      <tr>
-        <td>{{this.first_name}}</td>
-        <td>{{this.last_name}}</td>
-        <td>{{this.email}}</td>
-        <td>{{this.role}}</td>
-      </tr>
-    </tbody>
-  {{/each}}
+  </table>
+</div>
 
-</table>
+<h2 class="text-center p-2 m-5 bg-dark text-white">Modificacion de roles</h2>
+<div class="container">
+  <div class="container d-flex">
+    <p class="m-2 text-white">Ingrese el ID del usuario a modificar: </p>
+    <input class="w-25 form-control controls" type="text " id="userIdInput" name="idUser" />
+    <button
+      type="submit"
+      class="btn btn-success fw-bold m-2 "
+    >Modificar</button>
+  </div>
 </div>

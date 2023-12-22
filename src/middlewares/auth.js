@@ -1,5 +1,4 @@
 export const showLoginView = (req, res, next) => {
-  console.log(req.user);
   if (req.user) {
     res.redirect("/perfil");
   } else {
@@ -30,7 +29,7 @@ export const isLogin = (req, res, next) => {
   } else {
     const error = {
       status: 401,
-      message: "Usuario no autenticado",
+      message: "Usuario no autenticado. Debe loguiarse previamente",
     };
     res.render("login", { error });
   }
