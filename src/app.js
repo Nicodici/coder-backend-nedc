@@ -109,6 +109,7 @@ app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/sessions", sessionRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/admin", adminRouter);
 app.use(viewRouter);
 app.use(errorHandler);
 app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs));

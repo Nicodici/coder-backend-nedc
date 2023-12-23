@@ -6,14 +6,14 @@ import { checkAuthenticated, checkRole } from "./../middlewares/auth.js";
 
 const router = Router();
 
-router.get("/", ProductsController.getProducts);
+router.get("/", ProductsController.getProducts); //ok
 
-router.get("/:pid", ProductsController.getProductById);
+router.get("/:pid", ProductsController.getProductById); //ok
 
-router.post("/", productUploader.single("avatar"), ProductsController.addProduct);
-// checkAuthenticated, checkRole(["admin","premium"]), validateFields,
-router.put("/:pid", validateFields, ProductsController.updateProduct);
+router.post("/",checkRole(["admin","premium"]), productUploader.single("avatar"), ProductsController.addProduct); //ok
+// checkAuthenticated, , validateFields,
+router.put("/:pid", validateFields, ProductsController.updateProduct); //ok
 
-router.delete("/:pid", ProductsController.deleteProduct);
+router.delete("/:pid", ProductsController.deleteProduct); //ok
 
 export { router as productsRouter };
