@@ -20,6 +20,7 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import { addLogger } from "./helpers/logger.js";
 import { swaggerSpecs } from "./config/swagger.config.js";
 import swaggerUI from "swagger-ui-express";
+import { adminRouter } from "./routes/admin.routes.js";
 
 dotenv.config();
 

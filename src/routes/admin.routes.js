@@ -6,4 +6,6 @@ router.get("/", AdminController.getUsers);
 
 router.delete("/:uid", AdminController.deleteUsers);
 
+router.patch("/:uid/role", AdminController.modifyRole);
+
 export {router as adminRouter}
